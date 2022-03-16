@@ -1,19 +1,11 @@
-// Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. 
-// We’ll use this function in the game to make the computer’s play. Tip: use the console to make sure this is returning the expected output before moving to 
-// the next step!
+const resultDiv = document.querySelector('.results');
+const choiceButtons = document.querySelectorAll('button');
 
-function computerPlay() {
-  const choices = ['Rock', 'Paper', 'Scissors'];
-  const randomIndex = Math.floor(Math.random() * choices.length);
-  
-  return choices[randomIndex];
-}
-
-function isWinner(choice1, choice2) {
-  return (choice1 === 'rock' && choice2 === 'scissors') ||
-         (choice1 === 'paper' && choice2 === 'rock') ||
-         (choice1 === 'scissors' && choice2 === 'paper');
-}
+choiceButtons.forEach(button => button.addEventListener('click', e => {
+  const playerChoice = e.target.textContent;
+  const computerChoice = computerPlay();
+  resultDiv.textContent = playRound(playerChoice, computerChoice);
+}))
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
@@ -28,26 +20,17 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt('Enter Rock, Paper, or Scissors');
-
-    const result = playRound(playerSelection, computerPlay());
-    alert(result);
-
-    if (result.startsWith('You Win')) {
-      playerScore++
-    } else if (result.startsWith('You Lose')) {
-      computerScore++;
-    }
-  }
-
-  alert(`Game Over! 
-player score: ${playerScore}
-computer score: ${computerScore}`)
+function computerPlay() {
+  const choices = ['Rock', 'Paper', 'Scissors'];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  
+  return choices[randomIndex];
 }
 
-game()
+function isWinner(choice1, choice2) {
+  return (choice1 === 'rock' && choice2 === 'scissors') ||
+         (choice1 === 'paper' && choice2 === 'rock') ||
+         (choice1 === 'scissors' && choice2 === 'paper');
+}
+
+
