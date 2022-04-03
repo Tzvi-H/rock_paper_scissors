@@ -1,1 +1,1 @@
-rock paper scissors game
+view [here](https://tzvi-h.github.io/rock_paper_scissors/)
